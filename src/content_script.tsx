@@ -13,10 +13,11 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
 window.onload = function() {
   console.log('finished loading.');
   console.log('officalCars: ', officalCars);
-  const carImages = document.getElementsByClassName('imgVehicleContainer');
-  for (var i = 0, l = carImages.length; i < l; i++) {
+  const carCell = document.getElementsByClassName('topSeller');
+  for (var i = 0, l = carCell.length; i < l; i++) {
     const commaLogo = document.createElement('b');
     commaLogo.innerText = 'comma supported';
-    carImages[i].appendChild(commaLogo);
+    console.log('carCell title: ', carCell[i].getElementsByClassName('makeModel')[0].textContent);
+    carCell[i].getElementsByClassName('imgVehicleContainer')[0].appendChild(commaLogo);
   }
 }
