@@ -68,3 +68,8 @@ Load `dist` directory
 
 ## Test
 `npx jest` or `npm run test`
+
+## How it works
+- Retrieve Car Elements
+- Filter Supported Makes -> Generic function
+- FIlter Supported Model and Year -> Specific to websites e.g. Autotrader.ca / Curbie.ca

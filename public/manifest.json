@@ -18,12 +18,12 @@
   "content_scripts": [
       {
           "matches": ["<all_urls>"],
-          "js": ["js/vendor.js", "js/content_script.js", "js/jquery.min.js"]
+          "js": ["js/vendor.js", "js/content_script.js"]
       }
   ],
 
   "background": {
-    "scripts": ["js/vendor.js", "js/background.js", "js/jquery.min.js"]
+    "scripts": ["js/vendor.js", "js/background.js"]
   },
 
   "permissions": [
