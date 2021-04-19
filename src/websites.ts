@@ -1,4 +1,4 @@
-import { makeIsSupported } from './utils';
+import { makeIsSupported, getYear } from './utils';
 
 export class Autotrader {
     private carElts: any;
@@ -13,16 +13,24 @@ export class Autotrader {
      * Filter out the supported makes to reduce the number of entries we need to check.
      * @returns supportedMakes
      */
-    private getSupportedMakeElts(): Array<HTMLElement> {
+    private getSupportedMakeElts(): any {
         const supportedMakes = [...this.carElts].filter((carElt: any) => {
             const modelInfo = this.getModelInfo(carElt);
             return makeIsSupported(modelInfo);
         });
         return supportedMakes;
     }
+    private getSupportedModelElts(supportedMakesElts: Array<HTMLElement>) {
+        const supportedModels = [...supportedMakesElts].filter((carElt: any) => {
+            const modelInfo = this.getModelInfo(carElt);
+            console.log('carElt getModelInfo ->:', modelInfo);
+            const modelYear = getYear(modelInfo);
+        });
+        // return supportedModels;
+    }
     public updatePage() {
         const supportedMakesElts = this.getSupportedMakeElts();
-        console.log('supportedMakesElts: ', supportedMakesElts);
+        this.getSupportedModelElts(supportedMakesElts);
         for (var i = 0, l = supportedMakesElts.length; i < l; i++) {
             const commaLogo = document.createElement('b');
             commaLogo.innerText = 'comma test';

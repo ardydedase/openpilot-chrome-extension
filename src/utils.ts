@@ -7,3 +7,8 @@ export const makeIsSupported = (makeModel: string) => {
     }
     return false;
 }
+
+export const getYear = (modelInfo: string): number => {
+    var year: number = Number(modelInfo.replace(/\D/g, ""));
+    return year;
+}
