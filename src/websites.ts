@@ -1,4 +1,4 @@
-import { makeIsSupported, getYear } from './utils';
+import { makeIsSupported, getYear, getModel } from './utils';
 
 export class Autotrader {
     private carElts: any;
@@ -25,6 +25,9 @@ export class Autotrader {
             const modelInfo = this.getModelInfo(carElt);
             console.log('carElt getModelInfo ->:', modelInfo);
             const modelYear = getYear(modelInfo);
+            console.log('modelYear ->:', modelYear);
+            const model = getModel(modelInfo);
+            console.log('model -> :', model);
         });
         // return supportedModels;
     }

@@ -53,7 +53,7 @@ npm run build
 ### terminal
 
 ```
-npm run watch
+npm run watch   
 ```
 
 ### Visual Studio Code
