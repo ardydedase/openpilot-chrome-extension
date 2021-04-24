@@ -1,4 +1,4 @@
-import { makeIsSupported, getYear, getModel } from './utils';
+import { makeIsSupported, getYear, getModel, modelYearIsSupported } from './utils';
 
 export class Autotrader {
     private carElts: any;
@@ -28,16 +28,17 @@ export class Autotrader {
             console.log('modelYear ->:', modelYear);
             const model = getModel(modelInfo);
             console.log('model -> :', model);
+            return modelYearIsSupported(model, modelYear);
         });
-        // return supportedModels;
+        return supportedModels;
     }
     public updatePage() {
         const supportedMakesElts = this.getSupportedMakeElts();
-        this.getSupportedModelElts(supportedMakesElts);
-        for (var i = 0, l = supportedMakesElts.length; i < l; i++) {
+        const supportedModelElts = this.getSupportedModelElts(supportedMakesElts);
+        for (var i = 0, l = supportedModelElts.length; i < l; i++) {
             const commaLogo = document.createElement('b');
             commaLogo.innerText = 'comma test';
-            supportedMakesElts[i].getElementsByClassName('imgVehicleContainer')[0].appendChild(commaLogo);
+            supportedModelElts[i].getElementsByClassName('imgVehicleContainer')[0].appendChild(commaLogo);
         }
     }
 }

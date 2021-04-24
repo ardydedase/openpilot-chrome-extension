@@ -1,4 +1,4 @@
-import { makeIsSupported, getYear, getModel } from '../utils';
+import { makeIsSupported, getYear, getModel, modelYearIsSupported} from '../utils';
 
 test("filterMake unsupported", () => {
     const unsupportedMake = makeIsSupported('2020 Mazda Mazda3');
@@ -18,3 +18,7 @@ test("getYear", () => {
 test("getModel", () =>  {
     expect(getModel('2021 Hyundai Sonata')).toBe('Sonata');
 });
+
+test("modelYearIsSupported", () => {
+    expect(modelYearIsSupported('Corolla', 2021)).toBeTruthy();
+})
