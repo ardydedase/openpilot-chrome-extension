@@ -32,13 +32,20 @@ export class Autotrader {
         });
         return supportedModels;
     }
-    public updatePage() {
+
+    public getElementsToUpdate() {
+        const supportedMakesElts = this.getSupportedMakeElts();
+        const supportedModelElts = this.getSupportedModelElts(supportedMakesElts);
+        return supportedModelElts;
+    }
+
+    public updatePage(commaBtn: any) {
         const supportedMakesElts = this.getSupportedMakeElts();
         const supportedModelElts = this.getSupportedModelElts(supportedMakesElts);
         for (var i = 0, l = supportedModelElts.length; i < l; i++) {
-            const commaLogo = document.createElement('b');
-            commaLogo.innerText = 'comma test';
-            supportedModelElts[i].getElementsByClassName('imgVehicleContainer')[0].appendChild(commaLogo);
+            // const commaLogo = document.createElement('b');
+            // commaLogo.innerText = 'comma test';
+            supportedModelElts[i].getElementsByClassName('makeModel')[0].appendChild(commaBtn);
         }
     }
 }

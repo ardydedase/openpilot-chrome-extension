@@ -22,7 +22,7 @@ export const getModel = (modelInfo: string): string => {
 export const modelYearIsSupported = (model: string, year: number): boolean => {
     const MODEL = 'Model (US Market Reference)';
     const matchingCars = officalCars.filter(car => {
-        if (car[MODEL].includes(model) && car[MODEL].includes(String(year % 100))) {
+        if (car[MODEL].toLocaleLowerCase().includes(model.toLowerCase()) && car[MODEL].includes(String(year % 100))) {
             return true;
         }
     });

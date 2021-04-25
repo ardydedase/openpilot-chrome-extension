@@ -1,5 +1,8 @@
-import { officalCars } from './offical_cars';
 import { Autotrader } from './websites';
+import Badge from 'react-bootstrap/Badge';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
 
 chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
   if (msg.color) {
@@ -11,14 +14,21 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
   }
 });
 
-window.onload = function() {
-  console.log('finished loading.');
-  console.log('officalCars: ', officalCars);
-  console.log('hostname: ', location.hostname);
-  // autotrader
-  let website;
-  if (location.hostname.includes('autotrader.ca')) {
+const openPilotBadge = (<Badge variant="dark">openpilot</Badge>);
+
+const observer = new MutationObserver((mutations) => {
+  if (mutations.length > 0) {
+    let website;
     website = new Autotrader();
+    const supportedModelElts = website?.getElementsToUpdate();
+    if (supportedModelElts.length > 0) {
+      for (var i = 0, l = supportedModelElts.length; i < l; i++) {
+        const targetElt = document.createElement('span');
+        targetElt.innerText = 'openpilot supported';
+        supportedModelElts[i].getElementsByClassName('makeModel')[0].appendChild(targetElt);
+        ReactDOM.render(openPilotBadge, supportedModelElts[i].getElementsByClassName('makeModel')[0].getElementsByTagName('span')[0]);
+      }    
+    }
   }
-  website?.updatePage();
-}
+});
+observer.observe(document, { childList: true, subtree: true, attributes: true });
