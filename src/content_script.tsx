@@ -2,7 +2,7 @@ import { Autotrader } from './websites';
 import Badge from 'react-bootstrap/Badge';
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import './content_script.css'
 
 chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
   if (msg.color) {
@@ -14,7 +14,15 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
   }
 });
 
-const openPilotBadge = (<Badge variant="dark">openpilot</Badge>);
+const openPilotBadge = (
+  <Badge variant="dark">openpilot
+    <div className="tooltiptext">
+      <div>hello</div>
+      <div>world</div>
+    </div>
+  </Badge>
+
+);
 
 const observer = new MutationObserver((mutations) => {
   if (mutations.length > 0) {
