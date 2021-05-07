@@ -1,15 +1,17 @@
 .badge .tooltiptext {
     visibility: hidden;
     width: 120px;
-    background-color: black;
+    background: rgba(0, 0, 0, 0.8);
     color: #fff;
     text-align: left;
-    border-radius: 6px;
+    border-radius: 0;
     padding: 5px;
+    font-family: monospace; 
   
     /* Position the tooltip */
     position: absolute;
     z-index: 1;
+    margin: 5px 0 0 -5px;
   }
   
   .badge:hover .tooltiptext {

@@ -1,5 +1,7 @@
 import { officalCars } from './offical_cars';
 
+const MODEL = 'Model (US Market Reference)';
+
 // This seems to be a more generic function across websites
 export const makeIsSupported = (makeModel: string): boolean => {
     if (officalCars.filter(car => makeModel.includes(car['Make'])).length > 0) {
@@ -19,8 +21,7 @@ export const getModel = (modelInfo: string): string => {
     return modelInfoArray.join(" ");
 }
 
-export const modelYearIsSupported = (model: string, year: number): boolean => {
-    const MODEL = 'Model (US Market Reference)';
+export const modelYearIsSupported = (model: string, year: number): boolean => {    
     const matchingCars = officalCars.filter(car => {
         if (car[MODEL].toLocaleLowerCase().includes(model.toLowerCase()) && car[MODEL].includes(String(year % 100))) {
             return true;
@@ -31,4 +32,25 @@ export const modelYearIsSupported = (model: string, year: number): boolean => {
         return true;
     }
     return false;
+}
+
+interface SupportDetailsInterface {
+    make: String;
+    model: String;
+    year: Number;
+    acc: String;
+}
+
+export const getSupportDetails = (model: string, year: number): SupportDetailsInterface => {
+    // TODO: Get support details
+    const supportDetails: SupportDetailsInterface = {
+        make: "Toyota",
+        model: "Corolla",
+        year: 2021,
+        acc: "openpilot"
+    };
+    officalCars.filter((car) => {
+        console.log('car model: ', car[MODEL]);
+    });
+    return supportDetails;
 }
