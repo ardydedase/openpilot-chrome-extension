@@ -17,7 +17,6 @@ export const getYear = (modelInfo: string): number => {
 
 export const getModel = (modelInfo: string): string => {
     const modelInfoArray = modelInfo.trim().split(" ").slice(2);
-    console.log('modelInfoArray: ', modelInfoArray);
     return modelInfoArray.join(" ");
 }
 
@@ -27,7 +26,6 @@ export const modelYearIsSupported = (model: string, year: number): boolean => {
             return true;
         }
     });
-    console.log('matchingCars: ', matchingCars);
     if (matchingCars.length > 0) {
         return true;
     }
@@ -35,10 +33,30 @@ export const modelYearIsSupported = (model: string, year: number): boolean => {
 }
 
 interface SupportDetailsInterface {
-    make: String;
-    model: String;
-    year: Number;
-    acc: String;
+    make: string;
+    model: string;
+    year: number;
+    acc: string;
+}
+
+export const getSupportModel = (model: string): string => {
+    const modelArray = model.split(" ");
+    modelArray.pop();
+    return modelArray.join(" ");
+}
+
+export const getSupportYear = (model: string): number => {
+    const modelArray = model.split(" ");
+    console.log('model year:', modelArray[(modelArray.length - 1)]);
+    const yearStr = modelArray[(modelArray.length - 1)];
+    // I hate to use regex
+
+    // const yearRegex = /\d{4}/g;
+    const yearRegex = /\-(\d{2})/g;
+
+    const numbers = yearStr.match(yearRegex);
+    console.log('numbers:', numbers);
+    return 0;
 }
 
 export const getSupportDetails = (model: string, year: number): SupportDetailsInterface => {
@@ -51,6 +69,10 @@ export const getSupportDetails = (model: string, year: number): SupportDetailsIn
     };
     officalCars.filter((car) => {
         console.log('car model: ', car[MODEL]);
+        const supportedModel: string = getSupportModel(car[MODEL]);
+        console.log('supportedModel:', supportedModel);
+        const supportedYear: number = getSupportYear(car[MODEL]);
+        console.log('getSupportYear:', supportedYear);
     });
     return supportDetails;
 }
