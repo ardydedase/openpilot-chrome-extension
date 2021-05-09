@@ -2,7 +2,10 @@ import { Autotrader } from './websites';
 import Badge from 'react-bootstrap/Badge';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './content_script.css'
+import { getYear, getModel, getSupportDetails } from './utils';
+import './content_script.css';
+import { SupportDetailsInterface } from './interface';
+
 
 chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
   if (msg.color) {
@@ -14,15 +17,16 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
   }
 });
 
-const openPilotBadge = (
-  <Badge variant="dark">openpilot
+const openPilotBadge = (supportDetails: SupportDetailsInterface) => {
+  return (<Badge variant="dark">openpilot
     <div className="tooltiptext">
-      <div>hello</div>
-      <div>world</div>
+      <div>Make: {supportDetails.make}</div>
+      <div>Model: {supportDetails.model}</div>
+      <div>Supported package: {supportDetails.supportedPackage}</div>
+      <div dangerouslySetInnerHTML={{__html: `ACC: ${supportDetails.acc}`}}></div>
     </div>
-  </Badge>
-
-);
+  </Badge>)
+};
 
 const observer = new MutationObserver((mutations) => {
   if (mutations.length > 0) {
@@ -32,9 +36,14 @@ const observer = new MutationObserver((mutations) => {
     if (supportedModelElts.length > 0) {
       for (var i = 0, l = supportedModelElts.length; i < l; i++) {
         const targetElt = document.createElement('span');
+        const modelInfo = website.getModelInfo(supportedModelElts[i]);
+        const year = getYear(modelInfo);
+        const model = getModel(modelInfo);
+        const supportDetails = getSupportDetails(model, year);
+        console.log('supportDetails:', supportDetails);
         targetElt.innerText = 'openpilot supported';
         supportedModelElts[i].getElementsByClassName('makeModel')[0].appendChild(targetElt);
-        ReactDOM.render(openPilotBadge, supportedModelElts[i].getElementsByClassName('makeModel')[0].getElementsByTagName('span')[0]);
+        ReactDOM.render(openPilotBadge(supportDetails), supportedModelElts[i].getElementsByClassName('makeModel')[0].getElementsByTagName('span')[0]);
       }    
     }
   }

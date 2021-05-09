@@ -1,6 +1,6 @@
 .badge .tooltiptext {
     visibility: hidden;
-    width: 120px;
+    width: auto;
     background: rgba(0, 0, 0, 0.8);
     color: #fff;
     text-align: left;

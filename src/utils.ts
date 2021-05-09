@@ -1,6 +1,10 @@
 import { officalCars } from './offical_cars';
+import { SupportDetailsInterface, SupportYearRange } from './interface';
 
 const MODEL = 'Model (US Market Reference)';
+const MAKE = "Make";
+const SUPPORTED_PACKAGE = "Supported Package";
+const ACC = "ACC";
 
 // This seems to be a more generic function across websites
 export const makeIsSupported = (makeModel: string): boolean => {
@@ -22,7 +26,10 @@ export const getModel = (modelInfo: string): string => {
 
 export const modelYearIsSupported = (model: string, year: number): boolean => {    
     const matchingCars = officalCars.filter(car => {
-        if (car[MODEL].toLocaleLowerCase().includes(model.toLowerCase()) && car[MODEL].includes(String(year % 100))) {
+        const supportedYearRange: SupportYearRange = getSupportYearRange(car[MODEL]);
+        if (car[MODEL].toLocaleLowerCase().includes(model.toLowerCase()) 
+            && yearIsSupported(year, supportedYearRange)
+        ) {
             return true;
         }
     });
@@ -32,47 +39,62 @@ export const modelYearIsSupported = (model: string, year: number): boolean => {
     return false;
 }
 
-interface SupportDetailsInterface {
-    make: string;
-    model: string;
-    year: number;
-    acc: string;
-}
-
 export const getSupportModel = (model: string): string => {
     const modelArray = model.split(" ");
     modelArray.pop();
     return modelArray.join(" ");
 }
 
-export const getSupportYear = (model: string): number => {
+export const getSupportYearRange = (model: string): SupportYearRange => {
+    const YEAR_PREFIX = "20";
+    const getStartYear = (year: string): number => {
+        const startYearRegex = new RegExp(/(\d{2})\-/g); 
+        let startYearNumbers;
+        while ((startYearNumbers = startYearRegex.exec(year)) != null) {
+            return Number(YEAR_PREFIX + startYearNumbers[1]);
+        }
+        return 0;
+    }
+    const getEndYear = (year: string): number => {
+        const endYearRegex = new RegExp(/\-(\d{2})/g);
+        let endYearNumbers;
+        while ((endYearNumbers = endYearRegex.exec(year)) != null) {
+            return Number(YEAR_PREFIX + endYearNumbers[1]);
+        }
+        return 0;
+    }
     const modelArray = model.split(" ");
-    console.log('model year:', modelArray[(modelArray.length - 1)]);
     const yearStr = modelArray[(modelArray.length - 1)];
-    // I hate to use regex
+    const supportYearRange: SupportYearRange = {
+        start: getStartYear(yearStr),
+        end: getEndYear(yearStr),
+    };
 
-    // const yearRegex = /\d{4}/g;
-    const yearRegex = /\-(\d{2})/g;
+    return supportYearRange;
+}
 
-    const numbers = yearStr.match(yearRegex);
-    console.log('numbers:', numbers);
-    return 0;
+export const yearIsSupported = (year: number, yearRange: SupportYearRange) => {
+    return year >= yearRange.start && year <= yearRange.end;
 }
 
 export const getSupportDetails = (model: string, year: number): SupportDetailsInterface => {
-    // TODO: Get support details
-    const supportDetails: SupportDetailsInterface = {
-        make: "Toyota",
-        model: "Corolla",
-        year: 2021,
-        acc: "openpilot"
+    let supportDetails: SupportDetailsInterface = {
+        make: '',
+        model: '',
+        supportedPackage: '',
+        acc: '',
     };
-    officalCars.filter((car) => {
-        console.log('car model: ', car[MODEL]);
+    officalCars.forEach((car) => {
         const supportedModel: string = getSupportModel(car[MODEL]);
-        console.log('supportedModel:', supportedModel);
-        const supportedYear: number = getSupportYear(car[MODEL]);
-        console.log('getSupportYear:', supportedYear);
+        const supportedYearRange: SupportYearRange = getSupportYearRange(car[MODEL]);
+        if (supportedModel === model && yearIsSupported(year, supportedYearRange)) {
+            supportDetails = {
+                make: car[MAKE],
+                model: car[MODEL],
+                supportedPackage: car[SUPPORTED_PACKAGE],
+                acc: car[ACC],
+            }
+        }
     });
     return supportDetails;
 }
