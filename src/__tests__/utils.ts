@@ -6,7 +6,7 @@ import {
     getSupportDetails, 
     yearIsSupported,
 } from '../utils';
-import { SupportDetailsInterface, SupportYearRange } from '../interface';
+import { SupportYearRange } from '../interface';
 
 
 test("filterMake unsupported", () => {

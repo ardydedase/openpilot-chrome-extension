@@ -1,9 +1,9 @@
-import { Autotrader } from './websites';
+import './content_script.css';
 import Badge from 'react-bootstrap/Badge';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Autotrader } from './websites';
 import { getYear, getModel, getSupportDetails } from './utils';
-import './content_script.css';
 import { SupportDetailsInterface } from './interface';
 
 
@@ -31,6 +31,7 @@ const openPilotBadge = (supportDetails: SupportDetailsInterface) => {
 const observer = new MutationObserver((mutations) => {
   if (mutations.length > 0) {
     let website;
+    // TODO: add factory
     website = new Autotrader();
     const supportedModelElts = website?.getElementsToUpdate();
     if (supportedModelElts.length > 0) {
@@ -43,7 +44,7 @@ const observer = new MutationObserver((mutations) => {
         targetElt.innerText = 'openpilot supported';
         supportedModelElts[i].getElementsByClassName('makeModel')[0].appendChild(targetElt);
         ReactDOM.render(openPilotBadge(supportDetails), supportedModelElts[i].getElementsByClassName('makeModel')[0].getElementsByTagName('span')[0]);
-      }    
+      }
     }
   }
 });
