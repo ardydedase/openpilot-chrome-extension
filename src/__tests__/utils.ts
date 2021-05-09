@@ -5,6 +5,7 @@ import {
     modelYearIsSupported, 
     getSupportDetails, 
     yearIsSupported,
+    getSupportYearRange,
 } from '../utils';
 import { SupportYearRange } from '../interface';
 
@@ -22,6 +23,7 @@ test("filterMake supported", () => {
 test("getYear", () => {
     expect(getYear('2021 Hyundai Sonata')).toBe(2021);
     expect(getYear('Toyota Corolla 2020')).toBe(2020);
+    expect(getYear('2021 Toyota Rav4')).toBe(2021);
 });
 
 test("getModel", () =>  {
@@ -39,11 +41,17 @@ const supportYearRange: SupportYearRange = {
     end: 2021,
 }
 test("getSupportDetails", () => {
-    const supportDetails = getSupportDetails("Accord", 2019);
-    expect(supportDetails.acc).toBe('Stock');
-    expect(supportDetails.make).toBe('Honda');
-    expect(supportDetails.model).toBe('Accord 2018-20');
-    expect(supportDetails.supportedPackage).toBe('All');
+    const accord = getSupportDetails("Accord", 2019);
+    expect(accord.acc).toBe('Stock');
+    expect(accord.make).toBe('Honda');
+    expect(accord.model).toBe('Accord 2018-20');
+    expect(accord.supportedPackage).toBe('All');
+
+    const rav4 = getSupportDetails("RAV4", 2021);
+    expect(rav4.acc).toBe('openpilot');
+    expect(rav4.make).toBe('Toyota');
+    expect(rav4.model).toBe('Rav4 2019-21');
+    expect(rav4.supportedPackage).toBe('All');    
 });
 
 test("yearIsSupported", () => {

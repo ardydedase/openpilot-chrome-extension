@@ -20,8 +20,12 @@ export const makeIsSupported = (makeModel: string): boolean => {
  * @returns year
  */
 export const getYear = (modelInfo: string): number => {
-    const year: number = Number(modelInfo.replace(/\D/g, ""));
-    return year;
+    const regex = new RegExp(/\d{4}/g); 
+    let year;
+    while ((year = regex.exec(modelInfo)) != null) {
+        return Number(year[0]);
+    }    
+    return 0;
 }
 
 /**
@@ -97,7 +101,7 @@ export const getSupportDetails = (model: string, year: number): SupportDetailsIn
     officalCars.forEach((car) => {
         const supportedModel: string = getSupportModel(car[MODEL]);
         const supportedYearRange: SupportYearRange = getSupportYearRange(car[MODEL]);
-        if (supportedModel === model && yearIsSupported(year, supportedYearRange)) {
+        if (supportedModel.toLowerCase() === model.toLowerCase() && yearIsSupported(year, supportedYearRange)) {
             supportDetails = {
                 make: car[MAKE],
                 model: car[MODEL],
