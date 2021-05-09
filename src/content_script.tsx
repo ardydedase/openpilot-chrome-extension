@@ -40,7 +40,6 @@ const observer = new MutationObserver((mutations) => {
         const year = getYear(modelInfo);
         const model = getModel(modelInfo);
         const supportDetails = getSupportDetails(model, year);
-        console.log('supportDetails:', supportDetails);
         targetElt.innerText = 'openpilot supported';
         supportedModelElts[i].getElementsByClassName('makeModel')[0].appendChild(targetElt);
         ReactDOM.render(openPilotBadge(supportDetails), supportedModelElts[i].getElementsByClassName('makeModel')[0].getElementsByTagName('span')[0]);

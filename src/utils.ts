@@ -25,9 +25,10 @@ export const getModel = (modelInfo: string): string => {
 }
 
 export const modelYearIsSupported = (model: string, year: number): boolean => {    
+    console.log('model:', model);
     const matchingCars = officalCars.filter(car => {
         const supportedYearRange: SupportYearRange = getSupportYearRange(car[MODEL]);
-        if (car[MODEL].toLocaleLowerCase().includes(model.toLowerCase()) 
+        if (car[MODEL].toLowerCase().includes(model.toLowerCase()) 
             && yearIsSupported(year, supportedYearRange)
         ) {
             return true;

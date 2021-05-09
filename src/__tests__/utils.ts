@@ -26,10 +26,12 @@ test("getYear", () => {
 
 test("getModel", () =>  {
     expect(getModel('2021 Hyundai Sonata')).toBe('Sonata');
+    expect(getModel('2021 Toyota RAV4')).toBe('RAV4');
 });
 
 test("modelYearIsSupported", () => {
     expect(modelYearIsSupported('Corolla', 2021)).toBeTruthy();
+    expect(modelYearIsSupported('RAV4', 2021)).toBeTruthy();
 });
 
 const supportYearRange: SupportYearRange = {
