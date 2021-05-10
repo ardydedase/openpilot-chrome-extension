@@ -23,6 +23,8 @@ const openPilotBadge = (supportDetails: SupportDetailsInterface) => {
       <div>Model: {supportDetails.model}</div>
       <div>Supported package: {supportDetails.supportedPackage}</div>
       <div dangerouslySetInnerHTML={{__html: `ACC: ${supportDetails.acc}`}}></div>
+      <div>Compatibility: {supportDetails.compatibility}</div>
+      <div><a href="https://github.com/commaai/openpilot/blob/master/README.md#supported-cars" target="_blank">Reference</a></div>
     </div>
   </div>)
 };

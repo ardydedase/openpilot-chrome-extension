@@ -1,3 +1,5 @@
+import { Compatibility } from './interface';
+
 const supportedCars = [
     {
         "Make": "Acura",
@@ -466,5 +468,5 @@ const supportedCars = [
 ]
 
 export const officalCars = supportedCars.map(car => {       
-    return { ...car, Community: false }
+    return { ...car, Compatibility: Compatibility.Supported }
 });

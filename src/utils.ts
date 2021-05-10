@@ -1,10 +1,11 @@
-import { officalCars } from './offical_cars';
-import { SupportDetailsInterface, SupportYearRange } from './interface';
+import { officalCars } from './supported_cars';
+import { SupportDetailsInterface, SupportYearRange, Compatibility } from './interface';
 
 const MODEL = 'Model (US Market Reference)';
 const MAKE = "Make";
 const SUPPORTED_PACKAGE = "Supported Package";
 const ACC = "ACC";
+const COMPATIBILITY = "Compatibility";
 
 // This seems to be a more generic function across websites
 export const makeIsSupported = (makeModel: string): boolean => {
@@ -97,6 +98,7 @@ export const getSupportDetails = (model: string, year: number): SupportDetailsIn
         model: '',
         supportedPackage: '',
         acc: '',
+        compatibility: Compatibility.Unknown,
     };
     officalCars.forEach((car) => {
         const supportedModel: string = getSupportModel(car[MODEL]);
@@ -107,6 +109,7 @@ export const getSupportDetails = (model: string, year: number): SupportDetailsIn
                 model: car[MODEL],
                 supportedPackage: car[SUPPORTED_PACKAGE],
                 acc: car[ACC],
+                compatibility: car[COMPATIBILITY]
             }
         }
     });
