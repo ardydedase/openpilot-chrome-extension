@@ -1,5 +1,4 @@
 import './content_script.css';
-import Badge from 'react-bootstrap/Badge';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Autotrader } from './websites';
@@ -18,14 +17,14 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
 });
 
 const openPilotBadge = (supportDetails: SupportDetailsInterface) => {
-  return (<Badge variant="dark">openpilot
+  return (<div className="openpilot-badge">openpilot
     <div className="tooltiptext">
       <div>Make: {supportDetails.make}</div>
       <div>Model: {supportDetails.model}</div>
       <div>Supported package: {supportDetails.supportedPackage}</div>
       <div dangerouslySetInnerHTML={{__html: `ACC: ${supportDetails.acc}`}}></div>
     </div>
-  </Badge>)
+  </div>)
 };
 
 const observer = new MutationObserver((mutations) => {
