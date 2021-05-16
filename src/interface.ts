@@ -1,6 +1,6 @@
 export enum Compatibility {
     Supported = "Supported Car",
-    Community = "Community Maintained Cars and Features",
+    Community = "Community Maintained",
     Unknown = "Unknown",
 }
 

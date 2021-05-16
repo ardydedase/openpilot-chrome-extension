@@ -1,4 +1,5 @@
 import { Compatibility } from '../interface';
+import { MODEL } from '../constants';
 
 export const cars = [
     {
@@ -467,6 +468,8 @@ export const cars = [
     }
 ];
 
-export const communityMaintainedCars = cars.map(car => {       
-    return { ...car, Compatibility: Compatibility.Community }
+export const communityMaintainedCars = cars.map(car => {
+    const model = car[MODEL];
+    const regex = /(<([^>]+)>)/ig;
+    return { ...car, Compatibility: Compatibility.Community, MODEL: model.replace(regex, '') }
 });

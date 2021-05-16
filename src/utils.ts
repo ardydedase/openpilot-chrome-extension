@@ -1,11 +1,6 @@
 import { compatibleCars } from './compatible_cars';
 import { SupportDetailsInterface, SupportYearRange, Compatibility } from './interface';
-
-const MODEL = 'Model (US Market Reference)';
-const MAKE = "Make";
-const SUPPORTED_PACKAGE = "Supported Package";
-const ACC = "ACC";
-const COMPATIBILITY = "Compatibility";
+import { MODEL, MAKE, SUPPORTED_PACKAGE, ACC, COMPATIBILITY } from './constants';
 
 // This seems to be a more generic function across websites
 export const makeIsSupported = (makeModel: string): boolean => {
