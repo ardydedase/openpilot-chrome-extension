@@ -1,4 +1,4 @@
-import { officalCars } from './supported_cars';
+import { compatibleCars } from './compatible_cars';
 import { SupportDetailsInterface, SupportYearRange, Compatibility } from './interface';
 
 const MODEL = 'Model (US Market Reference)';
@@ -9,7 +9,7 @@ const COMPATIBILITY = "Compatibility";
 
 // This seems to be a more generic function across websites
 export const makeIsSupported = (makeModel: string): boolean => {
-    if (officalCars.filter(car => makeModel.includes(car['Make'])).length > 0) {
+    if (compatibleCars.filter(car => makeModel.includes(car['Make'])).length > 0) {
         return true;
     }
     return false;
@@ -40,7 +40,7 @@ export const getModel = (modelInfo: string): string => {
 }
 
 export const modelYearIsSupported = (model: string, year: number): boolean => {    
-    const matchingCars = officalCars.filter(car => {
+    const matchingCars = compatibleCars.filter(car => {
         const supportedYearRange: SupportYearRange = getSupportYearRange(car[MODEL]);
         if (car[MODEL].toLowerCase().includes(model.toLowerCase()) 
             && yearIsSupported(year, supportedYearRange)
@@ -100,7 +100,7 @@ export const getSupportDetails = (model: string, year: number): SupportDetailsIn
         acc: '',
         compatibility: Compatibility.Unknown,
     };
-    officalCars.forEach((car) => {
+    compatibleCars.forEach((car) => {
         const supportedModel: string = getSupportModel(car[MODEL]);
         const supportedYearRange: SupportYearRange = getSupportYearRange(car[MODEL]);
         if (supportedModel.toLowerCase() === model.toLowerCase() && yearIsSupported(year, supportedYearRange)) {
