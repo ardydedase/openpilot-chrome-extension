@@ -1,4 +1,6 @@
-export const supportedCars = [
+import { Compatibility } from '../interface';
+
+const cars = [
     {
         "Make": "Acura",
         "Model (US Market Reference)": "ILX 2016-19",
@@ -463,4 +465,8 @@ export const supportedCars = [
         "No ACC accel below": "0mph",
         "No ALC below": "0mph"
     }
-]
+];
+
+export const supportedCars = cars.map(car => {       
+    return { ...car, Compatibility: Compatibility.Supported }
+});
