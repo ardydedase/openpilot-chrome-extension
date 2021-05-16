@@ -69,6 +69,15 @@ Load `dist` directory
 ## Test
 `npx jest` or `npm run test`
 
+## Data import
+
+- Import table in markdown format and convert it to JSON.
+- Use this tool: https://tableconvert.com/
+- Use the JSON output in supported_cars.ts
+- Sources: 
+    - https://github.com/commaai/openpilot/blob/master/README.md#supported-cars
+    - https://github.com/commaai/openpilot/blob/master/README.md#community-maintained-cars-and-features
+
 ## How it works
 - Retrieve Car Elements
 - Filter Supported Makes -> Generic function
