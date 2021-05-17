@@ -3,8 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Autotrader } from './websites';
 import { getYear, getModel, getSupportDetails, getReferenceLink } from './utils';
-import { Compatibility, SupportDetailsInterface } from './interface';
-
+import { SupportDetailsInterface } from './interface';
 
 chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
   if (msg.color) {

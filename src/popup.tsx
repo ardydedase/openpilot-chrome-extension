@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 
-const Popup = () => {
+export const Popup = () => {
   const [count, setCount] = useState(0);
   const [currentURL, setCurrentURL] = useState<string>();
 
@@ -34,17 +34,13 @@ const Popup = () => {
 
   return (
     <>
-      <ul style={{ minWidth: "700px" }}>
-        <li>Current URL: {currentURL}</li>
-        <li>Current Time: {new Date().toLocaleTimeString()}</li>
-      </ul>
-      <button
-        onClick={() => setCount(count + 1)}
-        style={{ marginRight: "5px" }}
-      >
-        count up
-      </button>
-      <button onClick={changeBackground}>change background</button>
+      <div style={{ minWidth: "300px" }}>
+        <div>Openpilot Compatible Cars (Unofficial)</div>
+        <div>Built by <a href="https://github.com/ardydedase/">@ardydedase</a></div>
+        <div>Curently works on autotrader.ca</div>
+        <div>MIT License</div>
+        <div>Contribute to support more websites</div>
+      </div>
     </>
   );
 };
