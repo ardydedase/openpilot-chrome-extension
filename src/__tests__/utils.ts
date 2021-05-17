@@ -5,9 +5,9 @@ import {
     modelYearIsSupported, 
     getSupportDetails, 
     yearIsSupported,
-    getSupportYearRange,
+    getReferenceLink,
 } from '../utils';
-import { SupportYearRange } from '../interface';
+import { Compatibility, SupportYearRange } from '../interface';
 
 
 test("filterMake unsupported", () => {
@@ -59,3 +59,10 @@ test("yearIsSupported", () => {
     expect(yearIsSupported(2019, supportYearRange)).toBeTruthy();
     expect(yearIsSupported(2020, supportYearRange)).toBeTruthy();
 });
+
+test("getReferenceLink", () => {
+    expect(getReferenceLink(Compatibility.Community))
+        .toEqual("https://github.com/commaai/openpilot/blob/master/README.md#community-maintained-cars-and-features");
+    expect(getReferenceLink(Compatibility.Supported))
+        .toEqual("https://github.com/commaai/openpilot/blob/master/README.md#supported-cars");
+})

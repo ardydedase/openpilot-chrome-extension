@@ -2,8 +2,8 @@ import './content_script.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Autotrader } from './websites';
-import { getYear, getModel, getSupportDetails } from './utils';
-import { SupportDetailsInterface } from './interface';
+import { getYear, getModel, getSupportDetails, getReferenceLink } from './utils';
+import { Compatibility, SupportDetailsInterface } from './interface';
 
 
 chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
@@ -24,7 +24,7 @@ const openPilotBadge = (supportDetails: SupportDetailsInterface) => {
       <div>Supported package: {supportDetails.supportedPackage}</div>
       <div dangerouslySetInnerHTML={{__html: `ACC: ${supportDetails.acc}`}}></div>
       <div>Compatibility: {supportDetails.compatibility}</div>
-      <div><a href="https://github.com/commaai/openpilot/blob/master/README.md#supported-cars" target="_blank">Reference</a></div>
+      <div><a href={`${getReferenceLink(supportDetails.compatibility)}`} target="_blank">Reference</a></div>
     </div>
   </div>)
 };

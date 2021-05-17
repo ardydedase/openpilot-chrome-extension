@@ -110,3 +110,11 @@ export const getSupportDetails = (model: string, year: number): SupportDetailsIn
     });
     return supportDetails;
 }
+
+export const getReferenceLink = (compatibility: Compatibility): string => {
+    let url = "https://github.com/commaai/openpilot/blob/master/README.md#supported-cars"
+    if (compatibility === Compatibility.Community) {
+      url = "https://github.com/commaai/openpilot/blob/master/README.md#community-maintained-cars-and-features";
+    }
+    return url;
+}
