@@ -1,4 +1,5 @@
-import { makeIsSupported, getYear, getModel, modelYearIsSupported } from './utils';
+import { makeIsSupported, modelYearIsSupported } from './utils';
+import { ModelParser } from './model_parser';
 
 export class Autotrader {
     private carElts: any;
@@ -22,8 +23,9 @@ export class Autotrader {
     private getSupportedModelElts(supportedMakesElts: Array<HTMLElement>) {
         const supportedModels = [...supportedMakesElts].filter((carElt: any) => {
             const modelInfo = this.getModelInfo(carElt);
-            const modelYear = getYear(modelInfo);
-            const model = getModel(modelInfo);
+            const modelParser = new ModelParser(modelInfo);
+            const modelYear = modelParser.getYear();
+            const model = modelParser.getModel();
             return modelYearIsSupported(model, modelYear);
         });
         return supportedModels;

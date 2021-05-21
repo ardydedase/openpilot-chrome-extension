@@ -10,30 +10,6 @@ export const makeIsSupported = (makeModel: string): boolean => {
     return false;
 }
 
-/**
- * Parses the car's year from the string pattern: "{year} {make} {model}""
- * @param modelInfo 
- * @returns year
- */
-export const getYear = (modelInfo: string): number => {
-    const regex = new RegExp(/\d{4}/g); 
-    let year;
-    while ((year = regex.exec(modelInfo)) != null) {
-        return Number(year[0]);
-    }    
-    return 0;
-}
-
-/**
- * Parses the car's model from the string pattern: "{year} {make} {model}""
- * @param modelInfo 
- * @returns model
- */
-export const getModel = (modelInfo: string): string => {
-    const modelInfoArray = modelInfo.trim().split(" ").slice(2);
-    return modelInfoArray.join(" ");
-}
-
 export const modelYearIsSupported = (model: string, year: number): boolean => {    
     const matchingCars = compatibleCars.filter(car => {
         const supportedYearRange: SupportYearRange = getSupportYearRange(car[MODEL]);
