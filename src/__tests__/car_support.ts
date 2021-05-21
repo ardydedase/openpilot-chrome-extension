@@ -1,12 +1,10 @@
 import { 
     makeIsSupported, 
-    getYear, 
-    getModel, 
     modelYearIsSupported, 
     getSupportDetails, 
     yearIsSupported,
     getReferenceLink,
-} from '../utils';
+} from '../car_support';
 import { Compatibility, SupportYearRange } from '../interface';
 
 
@@ -18,17 +16,6 @@ test("filterMake unsupported", () => {
 test("filterMake supported", () => {
     const supportedmake = makeIsSupported('2021 Hyundai Sonata');
     expect(supportedmake).toBeTruthy();
-});
-
-test("getYear", () => {
-    expect(getYear('2021 Hyundai Sonata')).toBe(2021);
-    expect(getYear('Toyota Corolla 2020')).toBe(2020);
-    expect(getYear('2021 Toyota Rav4')).toBe(2021);
-});
-
-test("getModel", () =>  {
-    expect(getModel('2021 Hyundai Sonata')).toBe('Sonata');
-    expect(getModel('2021 Toyota RAV4')).toBe('RAV4');
 });
 
 test("modelYearIsSupported", () => {

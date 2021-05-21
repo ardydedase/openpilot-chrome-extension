@@ -2,7 +2,8 @@ import './content_script.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Autotrader } from './websites';
-import { getYear, getModel, getSupportDetails, getReferenceLink } from './utils';
+import { getSupportDetails, getReferenceLink } from './car_support';
+import { ModelParser } from './model_parser';
 import { SupportDetailsInterface } from './interface';
 
 chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
@@ -38,8 +39,9 @@ const observer = new MutationObserver((mutations) => {
       for (var i = 0, l = supportedModelElts.length; i < l; i++) {
         const targetElt = document.createElement('span');
         const modelInfo = website.getModelInfo(supportedModelElts[i]);
-        const year = getYear(modelInfo);
-        const model = getModel(modelInfo);
+        const modelParser = new ModelParser(modelInfo);
+        const year = modelParser.getYear();
+        const model = modelParser.getModel();
         const supportDetails = getSupportDetails(model, year);
         targetElt.innerText = 'openpilot supported';
         supportedModelElts[i].getElementsByClassName('makeModel')[0].appendChild(targetElt);
