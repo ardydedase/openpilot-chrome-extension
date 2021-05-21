@@ -4,7 +4,7 @@ import {
     getSupportDetails, 
     yearIsSupported,
     getReferenceLink,
-} from '../utils';
+} from '../car_support';
 import { Compatibility, SupportYearRange } from '../interface';
 
 

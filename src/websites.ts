@@ -1,4 +1,4 @@
-import { makeIsSupported, modelYearIsSupported } from './utils';
+import { makeIsSupported, modelYearIsSupported } from './car_support';
 import { ModelParser } from './model_parser';
 
 export class Autotrader {

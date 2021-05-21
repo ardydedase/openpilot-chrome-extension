@@ -2,7 +2,7 @@ import './content_script.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Autotrader } from './websites';
-import { getSupportDetails, getReferenceLink } from './utils';
+import { getSupportDetails, getReferenceLink } from './car_support';
 import { ModelParser } from './model_parser';
 import { SupportDetailsInterface } from './interface';
 
