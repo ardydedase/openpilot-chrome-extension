@@ -5,6 +5,7 @@ import { AutotraderCa } from './websites';
 import { getSupportDetails, getReferenceLink } from './car_support';
 import { ModelParser } from './model_parser';
 import { SupportDetailsInterface } from './interface';
+import { SupportedCarUrl } from './constants';
 
 chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
   if (msg.color) {
@@ -34,9 +35,9 @@ const observer = new MutationObserver((mutations) => {
     let website;
     // TODO: add factory
     const baseUrl  = window.location.origin.toString();
-    if (baseUrl == "https://www.autotrader.ca") {
+    if (baseUrl.includes(SupportedCarUrl.AUTOTRADER_CA)) {
       website = new AutotraderCa();
-    } else if (baseUrl == "https://www.autotrader.com") {
+    } else if (baseUrl.includes(SupportedCarUrl.AUTOTRADER_COM)) {
       // TODO: Implement Curbie support
       // website = new AutotraderCom();
     }
