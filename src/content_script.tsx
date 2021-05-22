@@ -1,7 +1,7 @@
 import './content_script.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Autotrader } from './websites';
+import { AutotraderCa } from './websites';
 import { getSupportDetails, getReferenceLink } from './car_support';
 import { ModelParser } from './model_parser';
 import { SupportDetailsInterface } from './interface';
@@ -33,19 +33,28 @@ const observer = new MutationObserver((mutations) => {
   if (mutations.length > 0) {
     let website;
     // TODO: add factory
-    website = new Autotrader();
-    const supportedModelElts = website?.getElementsToUpdate();
-    if (supportedModelElts.length > 0) {
-      for (var i = 0, l = supportedModelElts.length; i < l; i++) {
-        const targetElt = document.createElement('span');
-        const modelInfo = website.getModelInfo(supportedModelElts[i]);
-        const modelParser = new ModelParser(modelInfo);
-        const year = modelParser.getYear();
-        const model = modelParser.getModel();
-        const supportDetails = getSupportDetails(model, year);
-        targetElt.innerText = 'openpilot supported';
-        supportedModelElts[i].getElementsByClassName('makeModel')[0].appendChild(targetElt);
-        ReactDOM.render(openPilotBadge(supportDetails), supportedModelElts[i].getElementsByClassName('makeModel')[0].getElementsByTagName('span')[0]);
+    const baseUrl  = window.location.origin.toString();
+    if (baseUrl == "https://www.autotrader.ca") {
+      website = new AutotraderCa();
+    } else if (baseUrl == "https://www.autotrader.com") {
+      // TODO: Implement Curbie support
+      // website = new AutotraderCom();
+    }
+
+    if (website) {
+      const supportedModelElts = website?.getElementsToUpdate();    
+      if (supportedModelElts.length > 0) {
+        for (var i = 0, l = supportedModelElts.length; i < l; i++) {
+          const targetElt = document.createElement('span');
+          const modelInfo = website.getModelInfo(supportedModelElts[i]);
+          const modelParser = new ModelParser(modelInfo);
+          const year = modelParser.getYear();
+          const model = modelParser.getModel();
+          const supportDetails = getSupportDetails(model, year);
+          targetElt.innerText = 'openpilot supported';
+          supportedModelElts[i].getElementsByClassName('makeModel')[0].appendChild(targetElt);
+          ReactDOM.render(openPilotBadge(supportDetails), supportedModelElts[i].getElementsByClassName('makeModel')[0].getElementsByTagName('span')[0]);
+        }
       }
     }
   }

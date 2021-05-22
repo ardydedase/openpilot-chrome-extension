@@ -1,7 +1,7 @@
-import { Autotrader } from '../websites';
+import { AutotraderCa } from '../websites';
 
-test("Autotrader", () => {
-    const website = new Autotrader();
+test("autotrader.ca", () => {
+    const website = new AutotraderCa();
     website.updatePage('');
     expect(website).toBeDefined();
 });

@@ -1,7 +1,7 @@
 import { makeIsSupported, modelYearIsSupported } from './car_support';
 import { ModelParser } from './model_parser';
 
-export class Autotrader {
+export class AutotraderCa {
     private carElts: any;
     constructor() {
         this.carElts = document.getElementsByClassName('topSeller');
