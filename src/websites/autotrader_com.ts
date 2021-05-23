@@ -8,9 +8,9 @@ export class AutotraderCom implements Website {
     constructor() {
         // consider class= inventory-listing-body
         this.carElts = document.getElementsByClassName('inventory-listing-body');
-        console.log('carElts:', this.carElts);
     }
     public getModelInfo(modelInfoElt: any) {
+        console.log('getModelInfo:', $(modelInfoElt).find("[data-cmp=subheading]").text());
         return modelInfoElt.getElementsByClassName('makeModel')[0].textContent;
     }
     /**

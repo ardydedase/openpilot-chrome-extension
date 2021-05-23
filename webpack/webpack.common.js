@@ -38,7 +38,10 @@ module.exports = {
     },
     plugins: [
         new CopyPlugin({
-            patterns: [{ from: ".", to: "../", context: "public" }],
+            patterns: [
+                { from: ".", to: "../", context: "public" },
+                { from: ".", to: "../js/", context: "src/third_party" },
+            ],
             options: {},
         }),
     ],
