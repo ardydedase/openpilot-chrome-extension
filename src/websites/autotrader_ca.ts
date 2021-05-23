@@ -1,9 +1,11 @@
-import { makeIsSupported, modelYearIsSupported } from './car_support';
-import { ModelParser } from './model_parser';
+import { makeIsSupported, modelYearIsSupported } from '../car_support';
+import { ModelParser } from '../model_parser';
+import { Website } from '../interface';
 
-export class AutotraderCa {
+export class AutotraderCa implements Website {
     private carElts: any;
     constructor() {
+        // Container class
         this.carElts = document.getElementsByClassName('topSeller');
     }
     public getModelInfo(modelInfoElt: any) {
@@ -13,14 +15,14 @@ export class AutotraderCa {
      * Filter out the supported makes to reduce the number of entries we need to check.
      * @returns supportedMakes
      */
-    private getSupportedMakeElts(): any {
+    private getSupportedMakeElts(): Array<any> {
         const supportedMakes = [...this.carElts].filter((carElt: any) => {
             const modelInfo = this.getModelInfo(carElt);
             return makeIsSupported(modelInfo);
         });
         return supportedMakes;
     }
-    private getSupportedModelElts(supportedMakesElts: Array<HTMLElement>) {
+    private getSupportedModelElts(supportedMakesElts: Array<HTMLElement>): Array<any> {
         const supportedModels = [...supportedMakesElts].filter((carElt: any) => {
             const modelInfo = this.getModelInfo(carElt);
             const modelParser = new ModelParser(modelInfo);
@@ -31,13 +33,13 @@ export class AutotraderCa {
         return supportedModels;
     }
 
-    public getElementsToUpdate() {
+    public getElementsToUpdate(): Array<any> {
         const supportedMakesElts = this.getSupportedMakeElts();
         const supportedModelElts = this.getSupportedModelElts(supportedMakesElts);
         return supportedModelElts;
     }
 
-    public updatePage(commaBtn: any) {
+    public updatePage(commaBtn: any): void {
         const supportedMakesElts = this.getSupportedMakeElts();
         const supportedModelElts = this.getSupportedModelElts(supportedMakesElts);
         for (var i = 0, l = supportedModelElts.length; i < l; i++) {

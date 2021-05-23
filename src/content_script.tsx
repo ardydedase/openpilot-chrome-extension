@@ -1,7 +1,7 @@
 import './content_script.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { AutotraderCa } from './websites';
+import { AutotraderCa, AutotraderCom } from './websites';
 import { getSupportDetails, getReferenceLink } from './car_support';
 import { ModelParser } from './model_parser';
 import { SupportDetailsInterface } from './interface';
@@ -38,8 +38,7 @@ const observer = new MutationObserver((mutations) => {
     if (baseUrl.includes(SupportedCarUrl.AUTOTRADER_CA)) {
       website = new AutotraderCa();
     } else if (baseUrl.includes(SupportedCarUrl.AUTOTRADER_COM)) {
-      // TODO: Implement Curbie support
-      // website = new AutotraderCom();
+      website = new AutotraderCom();
     }
 
     if (website) {
