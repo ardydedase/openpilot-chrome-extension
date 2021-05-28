@@ -52,8 +52,10 @@ const observer = new MutationObserver((mutations) => {
           const model = modelParser.getModel();
           const supportDetails = getSupportDetails(model, year);
           targetElt.innerText = 'openpilot supported';
-          supportedModelElts[i].getElementsByClassName('makeModel')[0].appendChild(targetElt);
-          ReactDOM.render(openPilotBadge(supportDetails), supportedModelElts[i].getElementsByClassName('makeModel')[0].getElementsByTagName('span')[0]);
+          website.getMakeModelElement(supportedModelElts[i]).appendChild(targetElt);
+          ReactDOM.render(openPilotBadge(supportDetails), website.getMakeModelElement(supportedModelElts[i]).getElementsByTagName('span')[0]);
+          // supportedModelElts[i].querySelectorAll('[data-cmp=subheading]')[0].appendChild(targetElt);
+          // ReactDOM.render(openPilotBadge(supportDetails), supportedModelElts[i].querySelectorAll('[data-cmp=subheading]')[0].getElementsByTagName('span')[0]);
         }
       }
     }

@@ -24,6 +24,7 @@ export class ModelParser {
      */
     getModel(): string {
         const modelInfoArray = this.modelInfo.trim().split(" ").slice(2);
+        console.log('modelInfoArray:', modelInfoArray);
         return modelInfoArray.join(" ");
     }    
 

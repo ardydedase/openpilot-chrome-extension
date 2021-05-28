@@ -10,10 +10,20 @@ export const makeIsSupported = (makeModel: string): boolean => {
     return false;
 }
 
+export const modelMatches = (parsedModel: string, supportedModel: string): boolean => {
+    const isSupported = supportedModel.includes(parsedModel);
+    // if (!isSupported) {
+    //     const matches = parsedModel.split(" ").filter((word: string) => supportedModel.split(" ").includes(word));
+    //     // console.log('matches:', matches);
+    //     return matches.length > 0;
+    // }
+    return isSupported;
+}
+
 export const modelYearIsSupported = (model: string, year: number): boolean => {    
     const matchingCars = compatibleCars.filter(car => {
         const supportedYearRange: SupportYearRange = getSupportYearRange(car[MODEL]);
-        if (car[MODEL].toLowerCase().includes(model.toLowerCase()) 
+        if (modelMatches(model.toLowerCase(), car[MODEL].toLowerCase())  
             && yearIsSupported(year, supportedYearRange)
         ) {
             return true;

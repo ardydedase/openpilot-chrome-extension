@@ -9,9 +9,18 @@ export class AutotraderCom implements Website {
         // consider class= inventory-listing-body
         this.carElts = document.getElementsByClassName('inventory-listing-body');
     }
-    public getModelInfo(modelInfoElt: any) {
-        console.log('getModelInfo:', $(modelInfoElt).find("[data-cmp=subheading]").text());
-        return modelInfoElt.getElementsByClassName('makeModel')[0].textContent;
+
+    private cleanupModelIfo(modelInfo: string) {
+        let cleanedUp = modelInfo.replace("Used", "");
+        cleanedUp = cleanedUp.replace("Certified", "");
+        cleanedUp = cleanedUp.trim();
+        return cleanedUp;
+    }
+
+    public getModelInfo(modelInfoElt: any) {        
+        const modelInfo = this.cleanupModelIfo(
+            modelInfoElt.querySelectorAll('[data-cmp=subheading]')[0].textContent);
+        return modelInfo;
     }
     /**
      * Filter out the supported makes to reduce the number of entries we need to check.
@@ -30,6 +39,7 @@ export class AutotraderCom implements Website {
             const modelParser = new ModelParser(modelInfo);
             const modelYear = modelParser.getYear();
             const model = modelParser.getModel();
+            console.log('model:', model);
             return modelYearIsSupported(model, modelYear);
         });
         return supportedModels;
@@ -38,6 +48,7 @@ export class AutotraderCom implements Website {
     public getElementsToUpdate(): Array<any> {
         const supportedMakesElts = this.getSupportedMakeElts();
         const supportedModelElts = this.getSupportedModelElts(supportedMakesElts);
+        console.log('supportedModelElts:', supportedModelElts);
         return supportedModelElts;
     }
 
@@ -45,8 +56,15 @@ export class AutotraderCom implements Website {
         const supportedMakesElts = this.getSupportedMakeElts();
         const supportedModelElts = this.getSupportedModelElts(supportedMakesElts);
         for (var i = 0, l = supportedModelElts.length; i < l; i++) {
-            supportedModelElts[i].getElementsByClassName('makeModel')[0].appendChild(commaBtn);
+            supportedModelElts[i].querySelectorAll('[data-cmp=subheading]')[0].appendChild(commaBtn);
         }
     }
+
+    // supportedModelElts[i].getElementsByClassName('makeModel')[0].appendChild(targetElt);
+    // ReactDOM.render(openPilotBadge(supportDetails), supportedModelElts[i].getElementsByClassName('makeModel')[0].getElementsByTagName('span')[0]);    
+    public getMakeModelElement(supportedModelElt: any) {
+        console.log('el typeof:', typeof(supportedModelElt));
+        return supportedModelElt.getElementsByClassName('makeModel')[0];
+    }    
 
 }

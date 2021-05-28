@@ -4,6 +4,7 @@ import {
     getSupportDetails, 
     yearIsSupported,
     getReferenceLink,
+    modelMatches,
 } from '../car_support';
 import { Compatibility, SupportYearRange } from '../interface';
 
@@ -52,4 +53,9 @@ test("getReferenceLink", () => {
         .toEqual("https://github.com/commaai/openpilot/blob/master/README.md#community-maintained-cars-and-features");
     expect(getReferenceLink(Compatibility.Supported))
         .toEqual("https://github.com/commaai/openpilot/blob/master/README.md#supported-cars");
-})
+});
+
+test("modelMatches", () => {
+    console.log('modelMatches');
+    console.log(modelMatches('Palisade AWD SEL w/ Winter Package', 'Palisade'));
+});

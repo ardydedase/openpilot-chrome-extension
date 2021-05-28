@@ -20,5 +20,6 @@ export interface SupportYearRange {
 export interface Website {
     getModelInfo(modelInfoElt: any): string;
     getElementsToUpdate(): Array<any>;
-    updatePage(commaBtn: any): void;    
+    updatePage(commaBtn: any): void;
+    getMakeModelElement(supportedModelElt: any): any;    
 }
