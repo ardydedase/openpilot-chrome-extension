@@ -52,7 +52,9 @@ export class AutotraderCa implements Website {
         });
         return supportedModels;
     }
-
+    public getTargetNode(): Element | Document {
+        return document;
+    }
     public getElementsToUpdate(): Array<any> {
         const supportedMakesElts = this.getSupportedMakeElts();
         const supportedModelElts = this.getSupportedModelElts(supportedMakesElts);
@@ -71,5 +73,9 @@ export class AutotraderCa implements Website {
     // ReactDOM.render(openPilotBadge(supportDetails), supportedModelElts[i].getElementsByClassName('makeModel')[0].getElementsByTagName('span')[0]);    
     public getMakeModelElement(supportedModelElt: any) {
         return supportedModelElt.getElementsByClassName(this.makeModelElt)[0];
+    }
+
+    public mutations(mutations: []): boolean {
+        return mutations.length > 0;
     }
 }

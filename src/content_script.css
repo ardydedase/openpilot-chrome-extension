@@ -20,14 +20,22 @@
   border-radius: 0;
   padding: 10px;
   font-family: monospace; 
-  min-width: 195px;
+  min-width: 220px;
 
   /* Position the tooltip */
   position: absolute;
-  z-index: 1;
+  z-index: 1000;
   margin: 5px 0 0 -10px;
 }
   
 .openpilot-badge:hover .tooltiptext {
   visibility: visible;
+}
+
+.openpilot-badge .tooltiptext a {
+  color:#14709e;
+}
+
+.openpilot-badge .tooltiptext a:hover {
+  text-decoration: underline;
 }

@@ -21,5 +21,7 @@ export interface Website {
     getModelInfo(modelInfoElt: any): string;
     getElementsToUpdate(): Array<any>;
     updatePage(commaBtn: any): void;
-    getMakeModelElement(supportedModelElt: any): any;    
+    getMakeModelElement(supportedModelElt: any): any;
+    getTargetNode(): Element | Document;
+    mutations(mutations: []): boolean;
 }

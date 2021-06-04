@@ -1,2 +1,2 @@
 export { AutotraderCa } from './autotrader_ca';
-export { AutotraderCom } from './autotrader_com';
+export { CurbieCa } from './curbie_ca';

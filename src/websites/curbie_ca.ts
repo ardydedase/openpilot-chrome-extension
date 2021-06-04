@@ -1,13 +1,17 @@
-import { makeIsSupported, modelYearIsSupported } from '../car_support';
+import { makeIsSupported, getSupportYearRange, yearIsSupported, getModel } from '../car_support';
 import { ModelParser } from '../model_parser';
-import { Website } from '../interface';
+import { Website, SupportYearRange } from '../interface';
+import { MODEL } from '../constants';
+import { compatibleCars } from '../compatible_cars'
 
-export class AutotraderCom implements Website {
+
+export class CurbieCa implements Website {
     private carElts: any;
     
     constructor() {
         // consider class= inventory-listing-body
-        this.carElts = document.getElementsByClassName('inventory-listing-body');
+        this.carElts = document.getElementsByClassName('cardiv');
+        this.carElts = [...new Set(this.carElts)];
     }
 
     private cleanupModelIfo(modelInfo: string) {
@@ -17,9 +21,12 @@ export class AutotraderCom implements Website {
         return cleanedUp;
     }
 
+    public getTargetNode(): Element | Document {
+        return document.getElementById('searchresult') || document;
+    }
+
     public getModelInfo(modelInfoElt: any) {        
-        const modelInfo = this.cleanupModelIfo(
-            modelInfoElt.querySelectorAll('[data-cmp=subheading]')[0].textContent);
+        const modelInfo = modelInfoElt.getElementsByClassName('carname')[0].innerHTML.replace('<br>', ' ');
         return modelInfo;
     }
     /**
@@ -33,14 +40,32 @@ export class AutotraderCom implements Website {
         });
         return supportedMakes;
     }
+    private static isSupported(model: string, year: number) {
+        const modelMatches = (parsedModel: string, supportedModel: string): boolean => {
+            // console.log('parsedModel: ', parsedModel);
+            // console.log('supportedModel:', supportedModel);
+            return supportedModel.includes(parsedModel) || parsedModel.includes(supportedModel);
+        }
+        const matchingCars = compatibleCars.filter(car => {
+            const supportedYearRange: SupportYearRange = getSupportYearRange(car[MODEL]);
+            if (modelMatches(model.toLowerCase(), getModel(car[MODEL].toLowerCase()))
+                && yearIsSupported(year, supportedYearRange)
+            ) {
+                return true;
+            }
+        });
+        if (matchingCars.length > 0) {
+            return true;
+        }
+        return false;
+    }
     private getSupportedModelElts(supportedMakesElts: Array<HTMLElement>): Array<any> {
         const supportedModels = [...supportedMakesElts].filter((carElt: any) => {
             const modelInfo = this.getModelInfo(carElt);
             const modelParser = new ModelParser(modelInfo);
             const modelYear = modelParser.getYear();
             const model = modelParser.getModel();
-            console.log('model:', model);
-            return modelYearIsSupported(model, modelYear);
+            return CurbieCa.isSupported(model, modelYear);
         });
         return supportedModels;
     }
@@ -48,7 +73,6 @@ export class AutotraderCom implements Website {
     public getElementsToUpdate(): Array<any> {
         const supportedMakesElts = this.getSupportedMakeElts();
         const supportedModelElts = this.getSupportedModelElts(supportedMakesElts);
-        console.log('supportedModelElts:', supportedModelElts);
         return supportedModelElts;
     }
 
@@ -56,15 +80,17 @@ export class AutotraderCom implements Website {
         const supportedMakesElts = this.getSupportedMakeElts();
         const supportedModelElts = this.getSupportedModelElts(supportedMakesElts);
         for (var i = 0, l = supportedModelElts.length; i < l; i++) {
-            supportedModelElts[i].querySelectorAll('[data-cmp=subheading]')[0].appendChild(commaBtn);
+            supportedModelElts[i].getElementsByClassName('carname')[0].appendChild(commaBtn);
         }
     }
 
     // supportedModelElts[i].getElementsByClassName('makeModel')[0].appendChild(targetElt);
     // ReactDOM.render(openPilotBadge(supportDetails), supportedModelElts[i].getElementsByClassName('makeModel')[0].getElementsByTagName('span')[0]);    
     public getMakeModelElement(supportedModelElt: any) {
-        console.log('el typeof:', typeof(supportedModelElt));
-        return supportedModelElt.getElementsByClassName('makeModel')[0];
-    }    
+        return supportedModelElt.getElementsByClassName('carname')[0];
+    }
 
+    public mutations(mutations: []): boolean {
+        return mutations.length > 0 && mutations.length < 100;        
+    }
 }
