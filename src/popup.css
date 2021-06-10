@@ -1,0 +1,7 @@
+.popup {
+    padding: 5px;
+    min-width: 300px;
+}
+.popup button{
+    margin-bottom: 2px;
+}

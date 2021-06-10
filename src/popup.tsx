@@ -1,3 +1,4 @@
+import './popup.css';
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 
@@ -28,8 +29,8 @@ export const Popup = () => {
   
   return (
     <>
-      <div style={{ minWidth: "300px" }}>
-      <div><button onClick={showCompatibleCars}>Show compatible cars</button></div>
+    <div className="popup">
+        <div><button onClick={showCompatibleCars}>Show compatible cars</button></div>
         <div>Openpilot Compatible Cars (Unofficial)</div>
         <div>Built by <a href="https://github.com/ardydedase/" target="_blank">@ardydedase</a></div>
         <div><a href="https://github.com/ardydedase/openpilot-chrome-plugin" target="_blank">Contribute on GitHub</a> to support more websites</div>

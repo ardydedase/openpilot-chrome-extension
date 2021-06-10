@@ -49,7 +49,6 @@ export const yearIsSupported = (year: number, yearRange: SupportYearRange) => {
 }
 
 export const getSupportDetails = (model: string, year: number): SupportDetailsInterface => {
-    console.log('getting support details:', model, year);
     let supportDetails: SupportDetailsInterface = {
         make: '',
         model: '',

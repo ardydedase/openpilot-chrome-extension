@@ -42,8 +42,6 @@ export class CurbieCa implements Website {
     }
     private static isSupported(model: string, year: number) {
         const modelMatches = (parsedModel: string, supportedModel: string): boolean => {
-            // console.log('parsedModel: ', parsedModel);
-            // console.log('supportedModel:', supportedModel);
             return supportedModel.includes(parsedModel) || parsedModel.includes(supportedModel);
         }
         const matchingCars = compatibleCars.filter(car => {

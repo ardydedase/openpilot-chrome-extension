@@ -37,11 +37,9 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
       const year = modelParser.getYear();
       const model = modelParser.getModel();
       const supportDetails = getSupportDetails(model, year);
-      // console.log(supportDetails);
       const targetElt = document.createElement('span');
       targetElt.innerText = 'openpilot supported';
       website.getMakeModelElement(supportedModelElts[i]).appendChild(targetElt);
-      console.log(website.getMakeModelElement(supportedModelElts[i]));
       ReactDOM.render(openPilotBadge(supportDetails), website.getMakeModelElement(supportedModelElts[i]).getElementsByTagName('span')[0]);
     }
   }
