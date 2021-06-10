@@ -1,3 +1,6 @@
+/**
+ * Used for parsed car model info from the supported website.
+ */
 export class ModelParser {
     private modelInfo: string;
 
@@ -20,6 +23,7 @@ export class ModelParser {
 
     /**
      * Parses the car's model from the string pattern: "{year} {make} {model}""
+     * This is different from the other getModel for supported cars list.
      * @returns model
      */
     getModel(): string {

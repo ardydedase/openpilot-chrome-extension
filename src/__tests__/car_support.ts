@@ -1,9 +1,9 @@
 import { 
     makeIsSupported, 
-    modelYearIsSupported, 
     getSupportDetails, 
     yearIsSupported,
     getReferenceLink,
+    getModel,
 } from '../car_support';
 import { Compatibility, SupportYearRange } from '../interface';
 
@@ -16,11 +16,6 @@ test("filterMake unsupported", () => {
 test("filterMake supported", () => {
     const supportedmake = makeIsSupported('2021 Hyundai Sonata');
     expect(supportedmake).toBeTruthy();
-});
-
-test("modelYearIsSupported", () => {
-    expect(modelYearIsSupported('Corolla', 2021)).toBeTruthy();
-    expect(modelYearIsSupported('RAV4', 2021)).toBeTruthy();
 });
 
 const supportYearRange: SupportYearRange = {
@@ -52,4 +47,8 @@ test("getReferenceLink", () => {
         .toEqual("https://github.com/commaai/openpilot/blob/master/README.md#community-maintained-cars-and-features");
     expect(getReferenceLink(Compatibility.Supported))
         .toEqual("https://github.com/commaai/openpilot/blob/master/README.md#supported-cars");
-})
+});
+
+test("getModel - get suported car's model", () => {
+    expect(getModel('Civic Hatchback 2017-21')).toEqual('Civic Hatchback');
+});

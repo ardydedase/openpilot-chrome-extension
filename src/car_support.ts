@@ -10,21 +10,6 @@ export const makeIsSupported = (makeModel: string): boolean => {
     return false;
 }
 
-export const modelYearIsSupported = (model: string, year: number): boolean => {    
-    const matchingCars = compatibleCars.filter(car => {
-        const supportedYearRange: SupportYearRange = getSupportYearRange(car[MODEL]);
-        if (car[MODEL].toLowerCase().includes(model.toLowerCase()) 
-            && yearIsSupported(year, supportedYearRange)
-        ) {
-            return true;
-        }
-    });
-    if (matchingCars.length > 0) {
-        return true;
-    }
-    return false;
-}
-
 export const getSupportModel = (model: string): string => {
     const modelArray = model.split(" ");
     modelArray.pop();
@@ -74,7 +59,7 @@ export const getSupportDetails = (model: string, year: number): SupportDetailsIn
     compatibleCars.forEach((car) => {
         const supportedModel: string = getSupportModel(car[MODEL]);
         const supportedYearRange: SupportYearRange = getSupportYearRange(car[MODEL]);
-        if (supportedModel.toLowerCase() === model.toLowerCase() && yearIsSupported(year, supportedYearRange)) {
+        if (model.toLowerCase().includes(supportedModel.toLowerCase()) && yearIsSupported(year, supportedYearRange)) {
             supportDetails = {
                 make: car[MAKE],
                 model: car[MODEL],
@@ -93,4 +78,12 @@ export const getReferenceLink = (compatibility: Compatibility): string => {
       url = "https://github.com/commaai/openpilot/blob/master/README.md#community-maintained-cars-and-features";
     }
     return url;
+}
+
+export const getModel = (model: string): string => {
+    // get rid of the year range and other strings we don't need. 
+    // they are usually at the end of the array.
+    let modelInfoArray = model.trim().split(" ");
+    modelInfoArray.pop();
+    return modelInfoArray.join(" ");
 }
