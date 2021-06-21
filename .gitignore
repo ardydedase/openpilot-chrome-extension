@@ -1,4 +1,6 @@
 npm-debug.log
+dist.zip
+
 node_modules/
 dist/
 tmp/
