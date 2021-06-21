@@ -1,6 +1,6 @@
 {
   "name": "openpilot-chrome-extension",
-  "version": "1.2",
+  "version": "1.2.0",
   "description": "openpilot-chrome-extension",
   "main": "index.js",
   "scripts": {
