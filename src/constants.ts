@@ -6,6 +6,5 @@ export const COMPATIBILITY = "Compatibility";
 
 export enum SupportedCarUrl {
     AUTOTRADER_CA = "autotrader.ca",
-    AUTOTRADER_COM = "autotrader.com",
     CURBIE_CA = "curbie.ca",
 }
