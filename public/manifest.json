@@ -2,7 +2,7 @@
   "manifest_version": 3,
 
   "name": "Openpilot Supported Cars (Unofficial)",
-  "description": "Indicate if a car is supported by Openpilot.",
+  "description": "Indicate if a car is supported by Openpilot when browsing a car marketplace website like autotrader.ca.",
   "version": "1.3.0",
 
   "icons": {
