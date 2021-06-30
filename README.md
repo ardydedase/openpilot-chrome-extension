@@ -1,8 +1,35 @@
-# Chrome Extension TypeScript Starter
+# Openpilot Chrome Extension (Unofficial)
 
-![build](https://github.com/chibat/chrome-extension-typescript-starter/workflows/build/badge.svg)
+![build](https://github.com/ardydedase/openpilot-chrome-extension/workflows/build/badge.svg)
 
-Chrome Extension, TypeScript and Visual Studio Code
+Shop for cars knowing that they are supported by Openpilot.
+
+Blog post: <Insert here>
+
+## Supported cars data source
+
+Comma.ai has an API that returns supported vehicle compatibility data. However, it's not as up-to-date as Openpilot's README on supported cars. I'm using tableconvert.com to convert this markdown table from Openpilot's README into JSON.
+
+To update the supported cars JSON:
+- Copy the table in markdown format from the [Openpilot README](https://github.com/commaai/openpilot/blob/master/README.md) 
+- Convert the table markdown to JSON using [tableconvert.com](https://tableconvert.com/)
+- Update the `cars` array in [supported.ts](src/compatible_cars/supported.ts) and [community.ts](src/compatible_cars/community.ts).
+- Supported car sources: 
+    - https://github.com/commaai/openpilot/blob/master/README.md#supported-cars
+    - https://github.com/commaai/openpilot/blob/master/README.md#community-maintained-cars-and-features
+
+I know that this manual step is not glamorous. However, I could readily assign comma's API response to the `compatibleCars` constant if ever I decide to use it in the future.
+
+## Supported websites
+The extension currently supports the browse pages of: 
+* autotrader.ca e.g. https://www.autotrader.ca/new/hatchback,suv/?srt=1&make=Honda,Hyundai,Toyota
+* curbie.ca e.g. https://curbie.ca/cars
+
+
+### Adding a new website to support
+
+If you want to support a new website, e.g. carmarketplace.com. Add a new class `CarmarketPlaceCom` that implements the Website interface. Refer to the existing Website interface [implementations](src/websites/) for details.
+
 
 ## Prerequisites
 
@@ -68,17 +95,3 @@ Load `dist` directory
 
 ## Test
 `npx jest` or `npm run test`
-
-## Data import
-
-- Import table in markdown format and convert it to JSON.
-- Use this tool: https://tableconvert.com/
-- Use the JSON output in supported_cars.ts
-- Sources: 
-    - https://github.com/commaai/openpilot/blob/master/README.md#supported-cars
-    - https://github.com/commaai/openpilot/blob/master/README.md#community-maintained-cars-and-features
-
-## How it works
-- Retrieve Car Elements
-- Filter Supported Makes -> Generic function
-- FIlter Supported Model and Year -> Specific to websites e.g. Autotrader.ca / Curbie.ca
