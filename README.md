@@ -10,6 +10,11 @@ Shop for cars knowing that they are supported by Openpilot.
 
 ![Chrome extension on autotrader.ca](https://cdn-images-1.medium.com/max/800/1*AhQXp9LBa6G_44v42lB-xg.png)
 
+## Supported websites
+The extension currently works the following web pages: 
+* [autotrader.ca/new](https://www.autotrader.ca/new) e.g. https://www.autotrader.ca/new/hatchback,suv/?srt=1&make=Honda,Hyundai,Toyota
+* [curbie.ca/cars](https://curbie.ca/cars)
+
 ## Supported cars data source
 
 Supported cars data is from [Openpilot's README](https://github.com/commaai/openpilot/blob/master/README.md#supported-cars).
@@ -25,11 +30,6 @@ To update the supported cars JSON:
 - Supported car sources: 
     - https://github.com/commaai/openpilot/blob/master/README.md#supported-cars
     - https://github.com/commaai/openpilot/blob/master/README.md#community-maintained-cars-and-features
-
-## Supported websites
-The extension currently supports the browse pages of: 
-* [autotrader.ca/new](https://www.autotrader.ca/new) e.g. https://www.autotrader.ca/new/hatchback,suv/?srt=1&make=Honda,Hyundai,Toyota
-* [curbie.ca/cars](https://curbie.ca/cars)
 
 
 ### Adding a new website to support
