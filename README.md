@@ -2,7 +2,7 @@
 
 ![build](https://github.com/ardydedase/openpilot-chrome-extension/workflows/build/badge.svg)
 
-Shop for cars knowing that they are supported by Openpilot.
+Shop for cars in autotrader.ca and curbie.ca knowing which ones are supported by Openpilot.
 
 [Install from chrome webstore](https://chrome.google.com/webstore/detail/openpilot-supported-cars/kcpamfgakhobnodajoddnakkbknmclgp/related)
 
