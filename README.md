@@ -6,9 +6,17 @@ Shop for cars knowing that they are supported by Openpilot.
 
 [Install from chrome webstore](https://chrome.google.com/webstore/detail/openpilot-supported-cars/kcpamfgakhobnodajoddnakkbknmclgp/related)
 
+![Chrome extension icon](https://cdn-images-1.medium.com/max/800/1*z3Jq465cV41L60F7njTBaw.png)
+
+![Chrome extension on autotrader.ca](https://cdn-images-1.medium.com/max/800/1*AhQXp9LBa6G_44v42lB-xg.png)
+
 ## Supported cars data source
 
-Comma.ai has an API that returns supported vehicle compatibility data. However, it's not as up-to-date as Openpilot's README on supported cars. I'm using tableconvert.com to convert this markdown table from Openpilot's README into JSON.
+Supported cars data is from [Openpilot's README](https://github.com/commaai/openpilot/blob/master/README.md#supported-cars).
+
+Comma.ai has an API that returns supported vehicle compatibility data. However, it's not as up-to-date as Openpilot's README. I used tableconvert.com to convert this markdown table from Openpilot's README into JSON.
+
+This manual step is not glamorous. However, I could readily assign comma's API response to the `compatibleCars` constant if ever I decide to use it in the future.
 
 To update the supported cars JSON:
 - Copy the table in markdown format from the [Openpilot README](https://github.com/commaai/openpilot/blob/master/README.md) 
@@ -17,8 +25,6 @@ To update the supported cars JSON:
 - Supported car sources: 
     - https://github.com/commaai/openpilot/blob/master/README.md#supported-cars
     - https://github.com/commaai/openpilot/blob/master/README.md#community-maintained-cars-and-features
-
-I know that this manual step is not glamorous. However, I could readily assign comma's API response to the `compatibleCars` constant if ever I decide to use it in the future.
 
 ## Supported websites
 The extension currently supports the browse pages of: 
