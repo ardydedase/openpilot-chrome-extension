@@ -6,6 +6,9 @@ Shop for cars in autotrader.ca and curbie.ca knowing which ones are supported by
 
 [Install from chrome webstore](https://chrome.google.com/webstore/detail/openpilot-supported-cars/kcpamfgakhobnodajoddnakkbknmclgp/related)
 
+[Blog post: Chrome Extension for Openpilot Supported Cars (Unofficial)](https://blog.ardy.me/chrome-extension-for-openpilot-supported-cars-unofficial-fa2fa2f179d)
+
+
 ![Chrome extension icon](https://cdn-images-1.medium.com/max/800/1*z3Jq465cV41L60F7njTBaw.png)
 
 ![Chrome extension on autotrader.ca](https://cdn-images-1.medium.com/max/800/1*AhQXp9LBa6G_44v42lB-xg.png)
