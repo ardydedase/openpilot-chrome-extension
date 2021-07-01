@@ -72,10 +72,6 @@ To update the supported cars JSON:
 npm install
 ```
 
-## Import as Visual Studio Code project
-
-...
-
 ## Build
 
 ```
