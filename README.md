@@ -15,6 +15,10 @@ The extension currently works the following web pages:
 * [autotrader.ca/new](https://www.autotrader.ca/new) e.g. https://www.autotrader.ca/new/hatchback,suv/?srt=1&make=Honda,Hyundai,Toyota
 * [curbie.ca/cars](https://curbie.ca/cars)
 
+### Adding a new website to support
+
+If you want to support a new website, e.g. carmarketplace.com. Add a new class `CarmarketPlaceCom` that implements the Website interface. Refer to the existing Website interface [implementations](src/websites/) for details.
+
 ## Supported cars data source
 
 Supported cars data is from [Openpilot's README](https://github.com/commaai/openpilot/blob/master/README.md#supported-cars).
@@ -30,12 +34,6 @@ To update the supported cars JSON:
 - Supported car sources: 
     - https://github.com/commaai/openpilot/blob/master/README.md#supported-cars
     - https://github.com/commaai/openpilot/blob/master/README.md#community-maintained-cars-and-features
-
-
-### Adding a new website to support
-
-If you want to support a new website, e.g. carmarketplace.com. Add a new class `CarmarketPlaceCom` that implements the Website interface. Refer to the existing Website interface [implementations](src/websites/) for details.
-
 
 ## Prerequisites
 
