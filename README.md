@@ -4,7 +4,7 @@
 
 Shop for cars knowing that they are supported by Openpilot.
 
-Blog post: <Insert here>
+[Install from chrome webstore](https://chrome.google.com/webstore/detail/openpilot-supported-cars/kcpamfgakhobnodajoddnakkbknmclgp/related)
 
 ## Supported cars data source
 
