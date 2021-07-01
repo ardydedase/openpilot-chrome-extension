@@ -22,8 +22,8 @@ I know that this manual step is not glamorous. However, I could readily assign c
 
 ## Supported websites
 The extension currently supports the browse pages of: 
-* autotrader.ca e.g. https://www.autotrader.ca/new/hatchback,suv/?srt=1&make=Honda,Hyundai,Toyota
-* curbie.ca e.g. https://curbie.ca/cars
+* [autotrader.ca/new](https://www.autotrader.ca/new) e.g. https://www.autotrader.ca/new/hatchback,suv/?srt=1&make=Honda,Hyundai,Toyota
+* [curbie.ca/cars](https://curbie.ca/cars)
 
 
 ### Adding a new website to support
