@@ -8,7 +8,6 @@ export class AutotraderCa implements Website {
     private carElts: any;
     private makeModelElt = 'makeModel';
     constructor() {
-        // Container class
         this.carElts = document.getElementsByClassName('topSeller');
     }
     public getModelInfo(modelInfoElt: any) {
@@ -69,8 +68,6 @@ export class AutotraderCa implements Website {
         }
     }
     
-    // supportedModelElts[i].getElementsByClassName('makeModel')[0].appendChild(targetElt);
-    // ReactDOM.render(openPilotBadge(supportDetails), supportedModelElts[i].getElementsByClassName('makeModel')[0].getElementsByTagName('span')[0]);    
     public getMakeModelElement(supportedModelElt: any) {
         return supportedModelElt.getElementsByClassName(this.makeModelElt)[0];
     }

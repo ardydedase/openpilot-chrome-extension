@@ -9,16 +9,8 @@ export class CurbieCa implements Website {
     private carElts: any;
     
     constructor() {
-        // consider class= inventory-listing-body
         this.carElts = document.getElementsByClassName('cardiv');
         this.carElts = [...new Set(this.carElts)];
-    }
-
-    private cleanupModelIfo(modelInfo: string) {
-        let cleanedUp = modelInfo.replace("Used", "");
-        cleanedUp = cleanedUp.replace("Certified", "");
-        cleanedUp = cleanedUp.trim();
-        return cleanedUp;
     }
 
     public getTargetNode(): Element | Document {
@@ -29,10 +21,6 @@ export class CurbieCa implements Website {
         const modelInfo = modelInfoElt.getElementsByClassName('carname')[0].innerHTML.replace('<br>', ' ');
         return modelInfo;
     }
-    /**
-     * Filter out the supported makes to reduce the number of entries we need to check.
-     * @returns supportedMakes
-     */
     private getSupportedMakeElts(): Array<any> {
         const supportedMakes = [...this.carElts].filter((carElt: any) => {
             const modelInfo = this.getModelInfo(carElt);
@@ -82,8 +70,6 @@ export class CurbieCa implements Website {
         }
     }
 
-    // supportedModelElts[i].getElementsByClassName('makeModel')[0].appendChild(targetElt);
-    // ReactDOM.render(openPilotBadge(supportDetails), supportedModelElts[i].getElementsByClassName('makeModel')[0].getElementsByTagName('span')[0]);    
     public getMakeModelElement(supportedModelElt: any) {
         return supportedModelElt.getElementsByClassName('carname')[0];
     }
