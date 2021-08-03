@@ -32,15 +32,21 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
   const supportedModelElts = website?.getElementsToUpdate();
   if (supportedModelElts.length > 0) {
     for (var i = 0, l = supportedModelElts.length; i < l; i++) {
-      const modelInfo = website.getModelInfo(supportedModelElts[i]);
+      const supportedModelElt = supportedModelElts[i];
+      const existingBadges = supportedModelElt.getElementsByClassName('openpilot-badge');
+      if (existingBadges.length > 0) {
+        continue;
+      }
+      const modelInfo = website.getModelInfo(supportedModelElt);
       const modelParser = new ModelParser(modelInfo);
       const year = modelParser.getYear();
       const model = modelParser.getModel();
       const supportDetails = getSupportDetails(model, year);
       const targetElt = document.createElement('span');
       targetElt.innerText = 'openpilot supported';
-      website.getMakeModelElement(supportedModelElts[i]).appendChild(targetElt);
-      ReactDOM.render(openPilotBadge(supportDetails), website.getMakeModelElement(supportedModelElts[i]).getElementsByTagName('span')[0]);
+      website.getMakeModelElement(supportedModelElt).appendChild(targetElt);
+      ReactDOM.render(openPilotBadge(supportDetails), website.getMakeModelElement(supportedModelElt).getElementsByTagName('span')[0]);
     }
   }
+  return true;
 });
