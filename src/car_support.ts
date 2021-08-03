@@ -1,6 +1,14 @@
 import { compatibleCars } from './compatible_cars';
 import { SupportDetailsInterface, SupportYearRange, Compatibility } from './interface';
-import { MODEL, MAKE, SUPPORTED_PACKAGE, ACC, COMPATIBILITY } from './constants';
+import {
+    MODEL,
+    MAKE,
+    SUPPORTED_PACKAGE,
+    ACC,
+    COMPATIBILITY,
+    SUPPORTED_CARS_README_URL,
+    COMMUNITY_CARS_README_URL
+} from './constants';
 
 // This seems to be a more generic function across websites
 export const makeIsSupported = (makeModel: string): boolean => {
@@ -73,9 +81,9 @@ export const getSupportDetails = (model: string, year: number): SupportDetailsIn
 }
 
 export const getReferenceLink = (compatibility: Compatibility): string => {
-    let url = "https://github.com/commaai/openpilot/blob/master/README.md#supported-cars"
+    let url = SUPPORTED_CARS_README_URL;
     if (compatibility === Compatibility.Community) {
-      url = "https://github.com/commaai/openpilot/blob/master/README.md#community-maintained-cars-and-features";
+      url = COMMUNITY_CARS_README_URL;
     }
     return url;
 }
