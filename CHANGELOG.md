@@ -1,6 +1,9 @@
 Changelog
 =========
 
+### 1.3.2
+- Security Patch - Bump tar from 6.1.0 to 6.1.6
+
 ### 1.3.1
 - Fix duplicate badge bug in curbie.ca
 - Add changelog file
