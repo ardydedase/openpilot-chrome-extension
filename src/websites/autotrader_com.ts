@@ -10,12 +10,16 @@ export class AutotraderCom implements Website {
     constructor() {
         this.carElts = document.getElementsByClassName('inventory-listing');
     }
-    public getModelInfo(modelInfoElt: any) {
-        let modelInfo = modelInfoElt.querySelector(this.makeModelElt).textContent;
+    private cleanupModelInfo(modelInfo: string): string {
         modelInfo = modelInfo.replace('Used', '');
         modelInfo = modelInfo.replace('Certified', '');
         modelInfo = modelInfo.replace('New', '');
         return modelInfo.trim();
+    }
+    public getModelInfo(modelInfoElt: any) {
+        let modelInfo = modelInfoElt.querySelector(this.makeModelElt).textContent;
+        modelInfo = this.cleanupModelInfo(modelInfo);
+        return modelInfo;
     }
     /**
      * Filter out the supported makes to reduce the number of entries we need to check.
