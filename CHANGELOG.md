@@ -1,6 +1,10 @@
 Changelog
 =========
 
+### 1.4.0
+- Support autotrader.com
+- Security Patch - Bump path-parse from 1.0.6 to 1.0.7
+
 ### 1.3.2
 - Security Patch - Bump tar from 6.1.0 to 6.1.6
 
