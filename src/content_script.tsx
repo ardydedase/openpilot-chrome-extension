@@ -1,7 +1,7 @@
 import './content_script.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { AutotraderCa, CurbieCa } from './websites';
+import { AutotraderCa, CurbieCa, AutotraderCom } from './websites';
 import { getSupportDetails, getReferenceLink } from './car_support';
 import { ModelParser } from './model_parser';
 import { SupportDetailsInterface } from './interface';
@@ -15,7 +15,7 @@ const openPilotBadge = (supportDetails: SupportDetailsInterface) => {
       <div>Supported package: {supportDetails.supportedPackage}</div>
       <div dangerouslySetInnerHTML={{__html: `ACC: ${supportDetails.acc}`}}></div>
       <div>Compatibility: {supportDetails.compatibility}</div>
-      <div><a href={`${getReferenceLink(supportDetails.compatibility)}`} target="_blank">Reference</a></div>
+      <div><a href={`${getReferenceLink(supportDetails.compatibility)}`} target="_blank" onClick={(e: any) => e.preventDefault()}>Reference</a></div>
     </div>
   </div>)
 };
@@ -28,6 +28,8 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
     website = new AutotraderCa();
   } else if (baseUrl.includes(SupportedCarUrl.CURBIE_CA)) {
     website = new CurbieCa();
+  } else if (baseUrl.includes(SupportedCarUrl.AUTOTRADER_COM)) {
+    website = new AutotraderCom();
   }
   const supportedModelElts = website?.getElementsToUpdate();
   if (supportedModelElts.length > 0) {

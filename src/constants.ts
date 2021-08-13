@@ -9,4 +9,5 @@ export const COMMUNITY_CARS_README_URL = "https://github.com/commaai/openpilot/b
 export enum SupportedCarUrl {
     AUTOTRADER_CA = "autotrader.ca",
     CURBIE_CA = "curbie.ca",
+    AUTOTRADER_COM = "autotrader.com",
 }
