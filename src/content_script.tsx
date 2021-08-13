@@ -15,7 +15,7 @@ const openPilotBadge = (supportDetails: SupportDetailsInterface) => {
       <div>Supported package: {supportDetails.supportedPackage}</div>
       <div dangerouslySetInnerHTML={{__html: `ACC: ${supportDetails.acc}`}}></div>
       <div>Compatibility: {supportDetails.compatibility}</div>
-      <div><a href={`${getReferenceLink(supportDetails.compatibility)}`} target="_blank">Reference</a></div>
+      <div><a href={`${getReferenceLink(supportDetails.compatibility)}`} target="_blank" onClick={(e: any) => e.preventDefault()}>Reference</a></div>
     </div>
   </div>)
 };
@@ -32,7 +32,6 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
     website = new AutotraderCom();
   }
   const supportedModelElts = website?.getElementsToUpdate();
-  console.log('supportedModelElts:', supportedModelElts);
   if (supportedModelElts.length > 0) {
     for (var i = 0, l = supportedModelElts.length; i < l; i++) {
       const supportedModelElt = supportedModelElts[i];

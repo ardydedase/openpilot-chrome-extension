@@ -6,12 +6,16 @@ import { compatibleCars } from '../compatible_cars'
 
 export class AutotraderCom implements Website {
     private carElts: any;
-    private makeModelElt = 'makeModel';
+    private makeModelElt = "[data-cmp='subheading']";
     constructor() {
         this.carElts = document.getElementsByClassName('inventory-listing');
     }
     public getModelInfo(modelInfoElt: any) {
-        return modelInfoElt.querySelector("[data-cmp='subheading']").textContent;
+        let modelInfo = modelInfoElt.querySelector(this.makeModelElt).textContent;
+        modelInfo = modelInfo.replace('Used', '');
+        modelInfo = modelInfo.replace('Certified', '');
+        modelInfo = modelInfo.replace('New', '');
+        return modelInfo.trim();
     }
     /**
      * Filter out the supported makes to reduce the number of entries we need to check.
@@ -20,14 +24,19 @@ export class AutotraderCom implements Website {
     private getSupportedMakeElts(): Array<any> {
         const supportedMakes = [...this.carElts].filter((carElt: any) => {
             const modelInfo = this.getModelInfo(carElt);
-            console.log('modelInfo:', modelInfo);
             return makeIsSupported(modelInfo);
         });
         return supportedMakes;
     }
     private static isSupported(model: string, year: number) {
+        const getWords = (str: string) => {
+            return str.split(" ").filter(Boolean);
+        };
         const modelMatches = (parsedModel: string, supportedModel: string): boolean => {
-            return supportedModel.includes(parsedModel);
+            const matchedWords = getWords(parsedModel).filter((word) => {
+                return getWords(supportedModel).includes(word);
+            })
+            return matchedWords.length > 0;
         }
         const matchingCars = compatibleCars.filter(car => {
             const supportedYearRange: SupportYearRange = getSupportYearRange(car[MODEL]);
@@ -65,12 +74,12 @@ export class AutotraderCom implements Website {
         const supportedMakesElts = this.getSupportedMakeElts();
         const supportedModelElts = this.getSupportedModelElts(supportedMakesElts);
         for (var i = 0, l = supportedModelElts.length; i < l; i++) {
-            supportedModelElts[i].querySelector("[data-cmp='subheading']")[0].appendChild(commaBtn);
+            supportedModelElts[i].querySelector(this.makeModelElt).appendChild(commaBtn);
         }
     }
     
     public getMakeModelElement(supportedModelElt: any) {
-        return supportedModelElt.querySelector("[data-cmp='subheading']")[0];
+        return supportedModelElt.querySelector(this.makeModelElt);
     }
 
     public mutations(mutations: []): boolean {
