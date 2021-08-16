@@ -2,12 +2,12 @@
 
 ![build](https://github.com/ardydedase/openpilot-chrome-extension/workflows/build/badge.svg)
 
-Shop for cars in <b>autotrader.com</b>, <b>autotrader.ca</b>, and <b>curbie.ca</b> knowing which ones are supported by Openpilot.
-
 <a href="https://chrome.google.com/webstore/detail/openpilot-supported-cars/kcpamfgakhobnodajoddnakkbknmclgp" target="_blank"><img src="https://developer-chrome-com.imgix.net/image/BrQidfK9jaQyIHwdw91aVpkPiib2/RQMv2HZ0v6NKfFn7XCeU.png?auto=format&w=228"/></a>
+
 
 [Blog post: Chrome Extension for Openpilot Supported Cars (Unofficial)](https://blog.ardy.me/chrome-extension-for-openpilot-supported-cars-unofficial-fa2fa2f179d)
 
+Shop for cars in <b>autotrader.com</b>, <b>autotrader.ca</b>, and <b>curbie.ca</b> knowing which ones are supported by Openpilot.
 
 ![Chrome extension icon](https://cdn-images-1.medium.com/max/800/1*z3Jq465cV41L60F7njTBaw.png)
 
