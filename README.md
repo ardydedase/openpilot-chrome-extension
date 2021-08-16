@@ -2,7 +2,7 @@
 
 ![build](https://github.com/ardydedase/openpilot-chrome-extension/workflows/build/badge.svg)
 
-Shop for cars in autotrader.ca and curbie.ca knowing which ones are supported by Openpilot.
+Shop for cars in autotrader.com, autotrader.ca and curbie.ca knowing which ones are supported by Openpilot.
 
 [Install from chrome webstore](https://chrome.google.com/webstore/detail/openpilot-supported-cars/kcpamfgakhobnodajoddnakkbknmclgp/related)
 
@@ -15,6 +15,7 @@ Shop for cars in autotrader.ca and curbie.ca knowing which ones are supported by
 
 ## Supported websites
 The extension currently works the following web pages: 
+* [autotrader.com/cars-for-sale/all-cars](https://www.autotrader.com/cars-for-sale/all-cars)
 * [autotrader.ca/new](https://www.autotrader.ca/new) e.g. https://www.autotrader.ca/new/hatchback,suv/?srt=1&make=Honda,Hyundai,Toyota
 * [curbie.ca/cars](https://curbie.ca/cars)
 
